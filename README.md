@@ -7,8 +7,6 @@
 # Устанавливаем conky
 sudo pacman -S conky
 ```
-https://github.com/VolokzhaninVadim/conky
-
 ## Автозагрузка
 ```
 # Создаем сервис
