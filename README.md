@@ -42,3 +42,5 @@ sudo pacman -S htop
 
 ## Балансы
 Балансы получаю через [API flask.](https://github.com/VolokzhaninVadim/flask)
+
+![my balance](./screenshot.png)
