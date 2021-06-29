@@ -49,14 +49,14 @@ conky.config = {
 conky.text = [[
 	${voffset 60}${color1}\
 	${font GE Inspira:pixelsize=120}${time %d}${font}\
-	${voffset -84}${color0}${font GE Inspira:pixelsize=58}${time %B}${font}\
+	${voffset -104}${color0}${font GE Inspira:pixelsize=58}${time %B}${font}\
 	${voffset 20}${font GE Inspira:pixelsize=24}${offset -130}${color2}${if_match ${time %w} == 0}${time %A}${else}${if_match ${time %w} == 6}${time %A}${else}${color0}${time %A}${endif}${endif}${color0} ${time %Y}${font}	
 	${voffset 45}${offset 13}${font GE Inspira:pixelsize=55}${time %H:%M:%S}${font}\
 	${voffset 25}${offset -395}\
 
 
 ######## Система
-	${voffset -20}${color3}ПК:${goto 123}${color0}ПК ${execi 9990 hostname}${goto 123}${voffset 15}Пользователь ${execi 9990 echo "$USER"}
+	${voffset -30}${color3}ПК:${goto 123}${color0}ПК ${execi 9990 hostname}${goto 123}${voffset 15}Пользователь ${execi 9990 echo "$USER"}
 	${voffset 5}${color3}Система:${goto 103}${color0}${execi 9990 lsb_release -a | grep 'Description' | cut -d":" -f2}${if_match $machine == x86_64} 64 bit${else} 32 bit${endif} на ядре $sysname ${kernel}\
 	${goto 125}${voffset 20}Время работы:${color0}${offset 5}$uptime\
 	${goto 125}${voffset 25}${color3}CPU:${color0}\
