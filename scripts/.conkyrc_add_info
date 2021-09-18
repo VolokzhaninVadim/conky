@@ -55,10 +55,4 @@ conky.text = [[
 	${goto 125}${voffset 35}${image /mnt/0/documents/projects/pc_settings/conky/data/alfa_logo.png (-s 25x20)(-p 100,135)}${offset 30}${color0}${voffset -26}Основной счет${offset 5}${execi 60 curl http://127.0.0.1:5000/balance?id=5}
 	${goto 125}${voffset 35}${offset 30}${color0}${voffset -26}Копилка${offset 5}${execi 60 curl http://127.0.0.1:5000/balance?id=6}
 	${goto 125}${voffset 35}${offset 30}${color0}${voffset -26}Рабство${offset 5}${execi 60 curl http://127.0.0.1:5000/balance?id=7}
-######## Музыка
-    ${voffset 15}${color3}${goto 15}Audacious player
-    ${goto 15}${color3}Now ${exec audtool --playback-status}: ${color}"${exec audtool --current-song}"   
-    ${goto 15}${color3}Artist:  ${color}${exec audtool --current-song-tuple-data artist}  
-    ${goto 15}${color3}Album:  ${color}${exec audtool --current-song-tuple-data album}  
-    ${goto 15}${color3}Time:  ${color}${exec audtool --current-song-output-length} | ${exec audtool --current-song-length}
 ]]
