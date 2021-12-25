@@ -70,8 +70,8 @@ conky.text = [[
 	${goto 125}${voffset 5}${color3}HDD (SSD):${color0}\
 	${goto 125}${voffset 15}System ${fs_used /}/${fs_size /} ${fs_bar 8,80 /} [${fs_used_perc /}%]\
 	${goto 125}${voffset 15}Temp ${fs_used /run}/${fs_size /run} ${fs_bar 8,91 /run} [${fs_used_perc /run}%]\
-	${goto 125}${voffset 15}HDD ${fs_used /mnt/sda1/}/${fs_size /mnt/sda1/} ${fs_bar 8,95 /mnt/sda1/} [${fs_used_perc /mnt/sda1/}%]\
-	${goto 125}${voffset 15}HDD RAID ${fs_used /mnt/0/}/${fs_size /mnt/0/} ${fs_bar 8,95 /mnt/0/} [${fs_used_perc /mnt/0/}%] Статус: ${if_match ${exec cat /sys/block/md0/md/mismatch_cnt} == 0}${if_match ${exec cat /proc/mdstat | grep -o UU | wc -l} == 1}${color3}OK ${else}ERROR ${endif}${endif}\
+	${goto 125}${voffset 15}HDD ${fs_used /mnt/media/}/${fs_size /mnt/media/} ${fs_bar 8,95 /mnt/media/} [${fs_used_perc /mnt/media/}%]\
+	${goto 125}${voffset 15}HDD RAID ${fs_used /mnt/backup/}/${fs_size /mnt/backup/} ${fs_bar 8,95 /mnt/backup/} [${fs_used_perc /mnt/backup/}%] Статус: ${if_match ${exec ssh ubuntu@192.168.0.178 cat /sys/block/md127/md/mismatch_cnt} == 0}${if_match ${exec ssh ubuntu@192.168.0.178 cat /proc/mdstat | grep -o UU | wc -l} == 1}${color3}OK ${else}ERROR ${endif}${endif}\
 	${goto 125}${voffset 20}${color3}Memory:${color0}
 	${goto 125}RAM:$color $mem/$memmax ${membar 8, 80} [$memperc%]\
 	${goto 125}${voffset 15}${if_match $swapperc > 0}Swap:$color $swap/$swapmax ${swapbar 8, 80} [$swapperc%]${else}Swap не используется ($swapfree свободно)${endif}
@@ -83,8 +83,8 @@ conky.text = [[
 	${voffset 5}${color3}Сеть:${goto 125}IP:${color0}
 	${goto 125}Внешний${offset 5}${color0}${execi 60 curl ipinfo.io/ip}
 	${goto 125}Внутренний${offset 5}${color0}${execi 60 ip route get 8.8.8.8 | head -1 | awk '{print $7}'}	
-	${goto 125}${downspeedgraph wlp12s0f3u4 40,300 FFFFFF FF0000 -t}
-	${goto 125}Входящий: $color${downspeed wlp12s0f3u4} k/s ${alignr}Исходящий: ${upspeed wlp12s0f3u4} k/s
+	${goto 125}${downspeedgraph wlp12s0f3u2 40,300 FFFFFF FF0000 -t}
+	${goto 125}Входящий: $color${downspeed wlp12s0f3u2} k/s ${alignr}Исходящий: ${upspeed wlp12s0f3u2} k/s
 ######## Процессы
    ${voffset 5}${color3}Процессы:${color0}${goto 125}Всего процессов:${offset 5}$processes\
 	${goto 125}${voffset 20}${color3}Макс. нагрузка на CPU:${color0}\
