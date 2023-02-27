@@ -1,7 +1,10 @@
 # Мониторинг системы
 * [conky](https://ru.wikipedia.org/wiki/Conky)
 
-![картинка](https://upload.wikimedia.org/wikipedia/commons/e/e3/Conky_rus.png)
+![conky_icon.png](conky_icon.png)
+
+![screenshot.png](screenshot.png)
+
 ## Установка 
 ```
 # Устанавливаем conky
