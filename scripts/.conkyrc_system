@@ -14,7 +14,7 @@ conky.config = {
 	-------------------------------------
 	--  Настройки окна
 	-------------------------------------
-	gap_x=30,
+	gap_x=10,
 	gap_y=30,
 
 	alignment="top_right",
@@ -35,7 +35,7 @@ conky.config = {
 	-------------------------------------
 	use_xft=true,
 	xftalpha=1,
-	font="Noto Sans:size=13",
+	font="Noto Sans:size=11",
 	text_buffer_size=256,
 	override_utf8_locale=true,
 
@@ -56,37 +56,30 @@ conky.text = [[
 
 
 ######## Система
-	${voffset -30}${color3}ПК:${goto 123}${color0}ПК ${execi 9990 hostname}${goto 123}${voffset 15}Пользователь ${execi 9990 echo "$USER"}
-	${voffset 5}${color3}Система:${goto 103}${color0}${execi 9990 lsb_release -a | grep 'Description' | cut -d":" -f2}${if_match $machine == x86_64} 64 bit${else} 32 bit${endif} на ядре $sysname ${kernel}\
-	${goto 125}${voffset 20}Время работы:${color0}${offset 5}$uptime\
+	${voffset -10}${color3}ПК:${goto 123}${color0}ПК ${execi 9990 hostname}${goto 123}${voffset 15}Пользователь ${execi 9990 echo "$USER"}
+	${voffset 5}${color3}Система:${goto 95}${color0}${execi 9990 lsb_release -a | grep 'Description' | cut -d":" -f2}${if_match $machine == x86_64} 64 bit${else} 32 bit${endif} на ядре $sysname ${kernel}\
+	${goto 125}${voffset 19}Время работы:${color0}${offset 5}$uptime\
 	${goto 125}${voffset 25}${color3}CPU:${color0}\
 	${goto 125}${voffset 18}Модель ${execi 9991 cat /proc/cpuinfo | grep "name" | cut -d : -f2 | uniq}\
-    ${goto 125}${voffset 18}Частота ${freq} МГц ${offset 5}Нагрузка ${offset -3} ${cpu cpu0}%${offset 10}Температура ${execi 3 sensors | grep Tctl | cut -d: -f2 | tr -d " +"}${color3}\
+    ${goto 125}${voffset 18}Частота ${freq} МГц ${offset 5}Нагрузка ${offset -3} ${cpu cpu0}%${offset 10}Температура ${execi 3 /home/volokzhanin/conky/scripts/temperature_cpu.sh}${color3}\
 	${goto 125}${voffset 15}${cpugraph 40,300 FFFFFF FF0000 -t}
-	${goto 125}${color3}GPU${color0}\
-	${goto 125}${voffset 18}Модель${execi 9990 nvidia-smi -a | grep "Product Name" | cut -d :  -f2}\
-	${goto 125}${voffset 15}Частота ${nvidia gpufreq} МГц${offset 5} Температура: ${nvidia temp}°C\
-	${goto 125}${voffset 15}Memory ${execi 3 nvidia-smi -a | grep Used | awk 'NR==1{print $3}'}Mb/${execi 3 nvidia-smi -a | grep Total | awk 'NR==1{print $3}'}Mb/[${execi 3 nvidia-smi -a | grep Gpu | awk '{print $3}'}%]
 	${goto 125}${voffset 5}${color3}HDD (SSD):${color0}\
-	${goto 125}${voffset 15}System ${fs_used /}/${fs_size /} ${fs_bar 8,80 /} [${fs_used_perc /}%]\
-	${goto 125}${voffset 15}Temp ${fs_used /run}/${fs_size /run} ${fs_bar 8,91 /run} [${fs_used_perc /run}%]\
-	${goto 125}${voffset 15}HDD ${fs_used /mnt/media/}/${fs_size /mnt/media/} ${fs_bar 8,95 /mnt/media/} [${fs_used_perc /mnt/media/}%]\
-	${goto 125}${voffset 15}HDD RAID ${fs_used /mnt/backup/}/${fs_size /mnt/backup/} ${fs_bar 8,95 /mnt/backup/} [${fs_used_perc /mnt/backup/}%] Статус: ${if_match ${exec ssh ubuntu@192.168.0.178 cat /sys/block/md127/md/mismatch_cnt} == 0}${if_match ${exec ssh ubuntu@192.168.0.178 cat /proc/mdstat | grep -o UU | wc -l} == 1}${color3}OK ${else}ERROR ${endif}${endif}\
-	${goto 125}${voffset 20}${color3}Memory:${color0}
-	${goto 125}RAM:$color $mem/$memmax ${membar 8, 80} [$memperc%]\
-	${goto 125}${voffset 15}${if_match $swapperc > 0}Swap:$color $swap/$swapmax ${swapbar 8, 80} [$swapperc%]${else}Swap не используется ($swapfree свободно)${endif}
+	${goto 125}${voffset 20}System ${fs_used /}/${fs_size /} ${fs_bar 8,80 /} [${fs_used_perc /}%]\
+	${goto 125}${voffset 20}Temp ${fs_used /run}/${fs_size /run} ${fs_bar 8,91 /run} [${fs_used_perc /run}%]\
+	${voffset 20}${goto 125}RAM:$color $mem/$memmax ${membar 8, 80} [$memperc%]\
+	${goto 125}${voffset 20}${if_match $swapperc > 0}Swap:$color $swap/$swapmax ${swapbar 8, 80} [$swapperc%]${else}Swap не используется ($swapfree свободно)${endif}
 	${goto 125}${voffset 5}${memgraph 40,300 FFFFFF FF0000 -t}
 ######## Медиа
-	${voffset 5}${color3}Медиа:${goto 125}Звук:${color0}
+	${voffset 2}${color3}Медиа:${goto 125}Звук:${color0}
 	${goto 125}Общий ${color0}${exec amixer | grep 'Front Left:' | awk '{print $5}' | awk -F% '{print $1}' | awk -F[ '{print $2}' | head -n 1}%
 ######## Сеть
-	${voffset 5}${color3}Сеть:${goto 125}IP:${color0}
+	${voffset 2}${color3}Сеть:${goto 125}IP:${color0}
 	${goto 125}Внешний${offset 5}${color0}${execi 60 curl ipinfo.io/ip}
 	${goto 125}Внутренний${offset 5}${color0}${execi 60 ip route get 8.8.8.8 | head -1 | awk '{print $7}'}	
-	${goto 125}${downspeedgraph wlp12s0f3u2 40,300 FFFFFF FF0000 -t}
-	${goto 125}Входящий: $color${downspeed wlp12s0f3u2} k/s ${alignr}Исходящий: ${upspeed wlp12s0f3u2} k/s
+	${goto 125}${downspeedgraph wlp0s20f3 40,300 FFFFFF FF0000 -t}
+	${goto 125}Входящий: $color${downspeed wlp0s20f3} k/s ${alignr}Исходящий: ${upspeed wlp0s20f3} k/s
 ######## Процессы
-   ${voffset 5}${color3}Процессы:${color0}${goto 125}Всего процессов:${offset 5}$processes\
+   ${voffset 2}${color3}Процессы:${color0}${goto 125}Всего процессов:${offset 5}$processes\
 	${goto 125}${voffset 20}${color3}Макс. нагрузка на CPU:${color0}\
 	${goto 125}${voffset 15}${color FFFFFF}${top name 1} ${top cpu 1}%\
 	${goto 125}${voffset 15}${color0}${top name 2} ${top cpu 2}%\
